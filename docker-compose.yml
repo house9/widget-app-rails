@@ -22,7 +22,17 @@ services:
       - 5451:5432
     volumes:
       - rails_test:/var/lib/postgresql/data/pgdata
+  redis:
+    image: redis:7.2-alpine
+    restart: always
+    ports:
+      - "6379:6379"
+    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    volumes:
+      - redis:/data
 
 volumes:
   rails_dev:
   rails_test:
+  redis:
+    driver: local
