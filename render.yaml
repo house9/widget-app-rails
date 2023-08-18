@@ -1,0 +1,18 @@
+databases:
+  - name: widget_app_db
+    databaseName: db_widget_app_production
+    user: user_widget_app_production
+
+services:
+  - type: web
+    name: widget_app_web
+    runtime: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: widget_app_db
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
