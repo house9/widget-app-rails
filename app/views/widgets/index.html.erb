@@ -8,6 +8,10 @@
     <p>
       <%= link_to "Show this widget", widget %>
     </p>
+    <p>
+      <%= link_to "Restock", restock_widget_path(widget), data: { turbo_method: :post } %>
+    </p>
+    <hr />
   <% end %>
 </div>
 

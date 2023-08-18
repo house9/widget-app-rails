@@ -6,6 +6,12 @@ class WidgetsController < ApplicationController
     @widgets = Widget.all
   end
 
+  def restock
+    RestockWidgetJob.perform_later({ widget_id: params[:id] })
+
+    redirect_to widget_url(params[:id]), notice: "Restocking widget..."
+  end
+
   # GET /widgets/1 or /widgets/1.json
   def show
   end
