@@ -6,13 +6,40 @@ databases:
 services:
   - type: web
     name: widget_app_web
-    runtime: ruby
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
+    runtime: ruby
     envVars:
       - key: DATABASE_URL
         fromDatabase:
           name: widget_app_db
           property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: widget_app_redis
+          property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
+
+  - type: worker
+    name: widget_app_sidekiq
+    buildCommand: "bundle install"
+    startCommand: "bundle exec sidekiq"
+    runtime: ruby
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: widget_app_db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: widget_app_redis
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
+
+  - type: redis
+    name: widget_app_redis
+    ipAllowList: [] # only allow internal connections
