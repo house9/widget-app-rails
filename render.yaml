@@ -19,7 +19,7 @@ services:
           type: redis
           name: widget_app_redis
           property: connectionString
-      - key: RAILS_MASTER_KEY
+      - key: SECRET_KEY_BASE
         sync: false
 
   - type: worker
@@ -37,7 +37,7 @@ services:
           type: redis
           name: widget_app_redis
           property: connectionString
-      - key: RAILS_MASTER_KEY
+      - key: SECRET_KEY_BASE
         sync: false
 
   - type: redis
