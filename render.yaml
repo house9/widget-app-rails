@@ -2,12 +2,14 @@ databases:
   - name: widget_app_db
     databaseName: db_widget_app_production
     user: user_widget_app_production
+    plan: free
 
 services:
   - type: web
     name: widget_app_web
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
+    plan: free
     runtime: ruby
     envVars:
       - key: DATABASE_URL
@@ -26,6 +28,7 @@ services:
     name: widget_app_sidekiq
     buildCommand: "bundle install"
     startCommand: "bundle exec sidekiq"
+    plan: starter # worker does not allow free tier
     runtime: ruby
     envVars:
       - key: DATABASE_URL
@@ -42,4 +45,5 @@ services:
 
   - type: redis
     name: widget_app_redis
+    plan: free
     ipAllowList: [] # only allow internal connections
