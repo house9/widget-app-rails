@@ -1,7 +1,12 @@
+<%
+title = []
+title << ENV['RENDER_GIT_BRANCH'] if Environment.review_app?
+title << 'WidgetApp'
+%>
 <!DOCTYPE html>
 <html>
   <head>
-    <title>WidgetApp</title>
+    <title><%= title.join('') %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -18,7 +23,7 @@
       |
       Rails ENV: <%= ENV['RAILS_ENV'] %>
       |
-      PR deploy? <%= ENV['IS_PULL_REQUEST'].present? %>
+      PR deploy? <%= Environment.review_app? %>
     </div>
     <hr>
     <%= yield %>
