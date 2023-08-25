@@ -10,6 +10,10 @@ Rails.application.routes.draw do
   # mount Sidekiq::Web in your Rails app
   mount Sidekiq::Web => "/sidekiq"
 
+  scope :api, constraints: { format: 'json' }, defaults: { format: 'json' } do
+    get '/widgets', to: 'widgets#index'
+  end
+
   get 'home', to: 'home#index'
   root "home#index"
 end
