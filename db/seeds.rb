@@ -1,22 +1,8 @@
-def create_test_widgets
-  100.times do |i|
-    Widget.create!(
-      name: "Widget #{i}",
-      sku: "SKU-#{i}"
-    )
-  end
-end
+raise 'Seeds are not allowed in production' if Rails.env.production?
 
-def production_seed
-  # no-op
+100.times do |i|
+  Widget.create!(
+    name: "Widget #{i}",
+    sku: "SKU-#{i}"
+  )
 end
-
-def staging_seed
-  create_test_widgets
-end
-
-def development_seed
-  create_test_widgets
-end
-
-eval("#{Rails.env}_seed")

@@ -1,15 +1,20 @@
+previewsEnabled: true # preview
+
 databases:
   - name: widget_app_db
     databaseName: db_widget_app_production
     user: user_widget_app_production
     plan: free
+    previewPlan: starter # preview
 
 services:
   - type: web
     name: widget_app_web
     buildCommand: "./bin/render-build.sh"
+    initialDeployHook: ./bin/render-preview-seed-database.sh # preview
     startCommand: "bundle exec puma -C config/puma.rb"
     plan: free
+    previewPlan: starter # preview
     runtime: ruby
     envVars:
       - key: DATABASE_URL
@@ -23,12 +28,14 @@ services:
           property: connectionString
       - key: SECRET_KEY_BASE
         sync: false
+      - fromGroup: widget-app-preview-env-group # preview
 
   - type: worker
     name: widget_app_sidekiq
     buildCommand: "bundle install"
     startCommand: "bundle exec sidekiq"
     plan: starter # worker does not allow free tier
+    previewPlan: starter # preview
     runtime: ruby
     envVars:
       - key: DATABASE_URL
@@ -42,8 +49,10 @@ services:
           property: connectionString
       - key: SECRET_KEY_BASE
         sync: false
+      - fromGroup: widget-app-preview-env-group # preview
 
   - type: redis
     name: widget_app_redis
     plan: free
+    previewPlan: starter # preview
     ipAllowList: [] # only allow internal connections
