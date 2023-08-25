@@ -24,6 +24,8 @@ title << 'WidgetApp'
       Rails ENV: <%= ENV['RAILS_ENV'] %>
       |
       PR deploy? <%= Environment.review_app? %>
+      |
+      <a href="/build">Client</a>
     </div>
     <hr>
     <%= yield %>

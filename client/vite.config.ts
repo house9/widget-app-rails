@@ -13,4 +13,13 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        assetFileNames: "static/[name]-[hash].[extname]",
+        chunkFileNames: "static/[name]-[hash].js",
+        entryFileNames: "static/[name]-[hash].js",
+      },
+    },
+  },
 });
