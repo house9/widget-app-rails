@@ -27,8 +27,11 @@ services:
           name: widget_app_redis
           property: connectionString
       - key: SECRET_KEY_BASE
-        sync: false
-      - fromGroup: widget-app-preview-env-group # preview
+        value: 2252989f79f49f077f0917063a0edac5c94602a6d7ed779f3299c3871387caafa10fdff9768b2198c0a222254251156d62aaaec0e3ffa2bac349d9eb8b2aac11
+        previewValue: f1db03399a7f426a0aa1ea69941d73e360edee5dfeaefdca14a2fb1d6bb0b9aa4f7178e99ed41ea45d91072e9cc8ed1d89991cfd4601afbeaf9e6f69842de14b # preview
+      - key: RAILS_ENV
+        value: production
+        previewValue: staging # preview
 
   - type: worker
     name: widget_app_sidekiq
@@ -48,8 +51,11 @@ services:
           name: widget_app_redis
           property: connectionString
       - key: SECRET_KEY_BASE
-        sync: false
-      - fromGroup: widget-app-preview-env-group # preview
+        value: 2252989f79f49f077f0917063a0edac5c94602a6d7ed779f3299c3871387caafa10fdff9768b2198c0a222254251156d62aaaec0e3ffa2bac349d9eb8b2aac11
+        previewValue: f1db03399a7f426a0aa1ea69941d73e360edee5dfeaefdca14a2fb1d6bb0b9aa4f7178e99ed41ea45d91072e9cc8ed1d89991cfd4601afbeaf9e6f69842de14b # preview
+      - key: RAILS_ENV
+        value: production
+        previewValue: staging # preview
 
   - type: redis
     name: widget_app_redis
