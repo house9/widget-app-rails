@@ -1,6 +1,6 @@
 <%
 title = []
-title << ENV['RENDER_GIT_BRANCH'] if Environment.review_app?
+title << "[#{ENV['RENDER_GIT_BRANCH']}] " if Environment.review_app?
 title << 'WidgetApp'
 %>
 <!DOCTYPE html>
