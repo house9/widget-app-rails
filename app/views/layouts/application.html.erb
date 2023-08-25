@@ -11,6 +11,16 @@
   </head>
 
   <body>
+    <div>
+      <%= link_to 'Home', root_path %>
+      |
+      <%= link_to 'Widgets', widgets_path %>
+      |
+      Rails ENV: <%= ENV['RAILS_ENV'] %>
+      |
+      PR deploy? <%= ENV['IS_PULL_REQUEST'].present? %>
+    </div>
+    <hr>
     <%= yield %>
   </body>
 </html>
