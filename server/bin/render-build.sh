@@ -12,13 +12,14 @@ bundle exec rake assets:clean
 
 # client build
 rm -fr client/dist/
-cd client
+cd ../client
 npm install
 npm run build
 cd ..
-mkdir -p public/build public/static
-mv client/dist/index.html public/build/index.html
-mv client/dist/static/* public/static
+mkdir -p server/public/build server/public/static
+mv client/dist/index.html server/public/build/index.html
+mv client/dist/static/* server/public/static
 
 # run database migrations
+cd server
 bundle exec rake db:migrate

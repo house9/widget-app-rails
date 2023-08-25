@@ -10,6 +10,7 @@ databases:
 services:
   - type: web
     name: widget_app_web
+    rootDir: server
     buildCommand: "./bin/render-build.sh"
     initialDeployHook: ./bin/render-preview-seed-database.sh # preview
     startCommand: "bundle exec puma -C config/puma.rb"
@@ -35,6 +36,7 @@ services:
 
   - type: worker
     name: widget_app_sidekiq
+    rootDir: server
     buildCommand: "bundle install"
     startCommand: "bundle exec sidekiq"
     plan: starter # worker does not allow free tier
