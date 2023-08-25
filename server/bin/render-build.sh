@@ -2,6 +2,7 @@
 # exit on error
 set -o errexit
 
+node -v
 ruby -v
 echo $RAILS_ENV
 
