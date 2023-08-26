@@ -1,0 +1,4 @@
+# Procfile for development
+server: cd server && bundle exec rails s -p 3030
+worker: cd server && bundle exec sidekiq
+client: cd client && npm run dev
