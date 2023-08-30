@@ -5,11 +5,15 @@ Sample application for testing deploys to render.com
 ## Dependencies
 
 - docker
+  - for development postgres and redis
 - ruby
 - node
 - overmind (replaces foreman)
+  - https://github.com/DarthSim/overmind
   - `brew install overmind`
 - direnv
+  - https://direnv.net/
+  - `brew install direnv`
 
 ## Setup
 
@@ -35,4 +39,5 @@ open http://localhost:5173
 ## render.com deploys
 
 TODO: pricing, free tiers
+
 TODO: preview apps/environments
