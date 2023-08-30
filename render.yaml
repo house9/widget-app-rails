@@ -64,3 +64,9 @@ services:
     plan: free
     previewPlan: starter # preview
     ipAllowList: [] # only allow internal connections
+
+  - type: redis
+    name: sample_redis
+    plan: free
+    previewPlan: starter # preview
+    ipAllowList: [] # only allow internal connections
