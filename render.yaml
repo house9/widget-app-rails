@@ -53,8 +53,3 @@ services:
     name: widget_app_redis
     plan: free
     ipAllowList: [] # only allow internal connections
-
-  - type: redis
-    name: sample_redis
-    plan: starter
-    ipAllowList: [] # only allow internal connections
