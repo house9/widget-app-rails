@@ -1,4 +1,5 @@
 # Procfile for development
 server: cd server && bundle exec rails s -p 3030
+rails_css: cd server && bin/rails tailwindcss:watch
 worker: cd server && bundle exec sidekiq
 client: cd client && npm run dev

@@ -1,18 +1,61 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Widgets</h1>
+<%=
+  render(
+    "components/header",
+    header_text: 'Widgets',
+    link_text: 'New Widget',
+    link_url: new_widget_path
+  )
+%>
 
-<div id="widgets">
-  <% @widgets.each do |widget| %>
-    <%= render widget %>
-    <p>
-      <%= link_to "Show this widget", widget %>
-    </p>
-    <p>
-      <%= link_to "Restock", restock_widget_path(widget), data: { turbo_method: :post } %>
-    </p>
-    <hr />
-  <% end %>
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+          <th scope="col" class="px-6 py-3">
+            Widget name
+          </th>
+          <th scope="col" class="px-6 py-3">
+            SKU
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Inventory count
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Actions
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @widgets.order(:name).each_with_index do |widget, index| %>
+          <%
+          row_css = index.odd? \
+            ? "border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700" \
+            : "bg-white border-b dark:bg-gray-900 dark:border-gray-700"
+          %>
+          <tr class="<%= row_css %>">
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+              <%= link_to widget.name, widget %>
+            </th>
+            <td class="px-6 py-4">
+              <%= widget.sku %>
+            </td>
+            <td class="px-6 py-4">
+              <%= widget.inventory_count %>
+            </td>
+            <td class="px-6 py-4">
+              <%= link_to(
+                  "Restock",
+                  restock_widget_path(widget),
+                  data: { turbo_method: :post },
+                  class: "font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                )
+              %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
 </div>
 
-<%= link_to "New widget", new_widget_path %>

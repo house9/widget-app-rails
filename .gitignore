@@ -17,6 +17,7 @@
 .idea
 .vscode/*
 /server/.bundle
+/server/app/assets/builds
 /server/config/master.key
 /server/log/*
 /server/public/assets
