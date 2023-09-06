@@ -7,13 +7,15 @@ function Widget() {
     fetch("/api/widgets")
       .then((res) => res.json())
       .then((data) => {
-        setWidgets(data);
+        setWidgets(data.widgets);
       });
   }, []);
 
   return (
     <>
-      <div className="card">Widget Count: {widgets?.length}</div>
+      <div className="card">
+        Widget Count from Rails server: {widgets?.length}
+      </div>
     </>
   );
 }
