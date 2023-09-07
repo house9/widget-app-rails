@@ -40,7 +40,16 @@
     hx-target="#target"
     class="font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer"
   >Not Found</a>
+
+  <button
+    hx-get="<%= home_hello_htmx_path %>"
+    hx-target="#target"
+  >
+    Click Me!
+    <%= image_tag 'tail-spin', alt: 'spinner', class: 'htmx-indicator bg-cyan-200' %>
+  </button>
 </div>
 
 <div id="target">
 </div>
+
