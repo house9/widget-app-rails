@@ -1,0 +1,20 @@
+<%
+background_color = [
+  'bg-red-500',
+  'bg-green-500',
+  'bg-blue-500',
+  'bg-yellow-500',
+  'bg-indigo-500',
+  'bg-purple-500',
+  'bg-pink-500',
+].sample
+%>
+
+<div class="<%= background_color %>">
+  <h1>
+    Hello HTMX! <%= Time.current %>
+  </h1>
+  <p>
+    <%= Faker::Quotes::Shakespearex.as_you_like_it_quote %>
+  </p>
+</div>

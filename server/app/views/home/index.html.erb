@@ -1,5 +1,46 @@
 <%= render 'components/header', header_text: 'Home' %>
 
-<p>
-  Nothing to see here... <%= link_to 'Widgets', widgets_path, class: 'font-medium text-blue-600 dark:text-blue-500 hover:underline' %>
-</p>
+<hr />
+
+<div>
+  Simple HTMX:
+  <%=
+    link_to(
+      'HTMX get',
+      home_hello_htmx_path,
+      class: 'font-medium text-blue-600 dark:text-blue-500 hover:underline',
+      'hx-get' => home_hello_htmx_path,
+      'hx-trigger' => 'click',
+      'hx-target' => '#target'
+    )
+  %>
+  [
+  <%=
+    link_to(
+      'HTMX link boosted',
+      home_hello_htmx_path,
+      class: 'font-medium text-blue-600 dark:text-blue-500 hover:underline',
+      'hx-boost' => 'true',
+      'hx-target' => '#target'
+    )
+  %>
+  ]
+  (
+  <%=
+    content_tag(
+      :span,
+      class: 'font-medium text-blue-600 dark:text-blue-500 hover:underline',
+      'hx-get' => home_hello_htmx_path,
+      'hx-target' => '#target'
+    ) do
+  %>HTMX span<% end %>
+  )
+  <a
+    hx-get="/not_found"
+    hx-target="#target"
+    class="font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer"
+  >Not Found</a>
+</div>
+
+<div id="target">
+</div>
