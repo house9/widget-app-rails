@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  resources :customers
+
   resources :widgets do
     member do
       post :restock

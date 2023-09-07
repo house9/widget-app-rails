@@ -1,0 +1,48 @@
+<p style="color: green"><%= notice %></p>
+
+<%=
+  render(
+    "components/header",
+    header_text: 'Customers',
+    link_text: 'New Customer',
+    link_url: new_customer_path
+  )
+%>
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+          <th scope="col" class="px-6 py-3">
+            Name
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Country
+          </th>
+          <th scope="col" class="px-6 py-3">
+            City, State
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @customers.order(:name).each_with_index do |customer, index| %>
+          <%
+          row_css = index.odd? \
+            ? "border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700" \
+            : "bg-white border-b dark:bg-gray-900 dark:border-gray-700"
+          %>
+          <tr class="<%= row_css %>">
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+              <%= link_to customer.name, customer %>
+            </th>
+            <td class="px-6 py-4">
+              <%= customer.country %>
+            </td>
+            <td class="px-6 py-4">
+              <%= "#{customer.city}, #{customer.state}" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
+</div>
