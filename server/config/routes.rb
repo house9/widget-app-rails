@@ -1,7 +1,12 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  resources :customers
+  resources :customers do
+    collection do
+      get :states
+      get :cities
+    end
+  end
 
   resources :widgets do
     member do

@@ -1,6 +1,14 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: %i[ show edit update destroy ]
 
+  def cities
+    render layout: false
+  end
+
+  def states
+    render layout: false
+  end
+
   # GET /customers or /customers.json
   def index
     @customers = Customer.all

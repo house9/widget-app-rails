@@ -18,17 +18,38 @@
 
   <div class="my-5">
     <%= form.label :country %>
-    <%= form.text_field :country, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <select
+      name="customer[country]"
+      id="countries"
+      hx-get="/customers/states"
+      hx-target="#states"
+    >
+      <option>Select Country</option>
+      <%= Region.new.countries_html_options %>
+    </select>
   </div>
 
   <div class="my-5">
     <%= form.label :state %>
-    <%= form.text_field :state, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <select
+      name="customer[state]"
+      id="states"
+      hx-get="/customers/cities"
+      hx-include="#countries"
+      hx-target="#cities"
+    >
+      <option>Select a country first</option>
+    </select>
   </div>
 
   <div class="my-5">
     <%= form.label :city %>
-    <%= form.text_field :city, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <select
+      name="customer[city]"
+      id="cities"
+    >
+      <option>Select a state first</option>
+    </select>
   </div>
 
   <div class="inline">
